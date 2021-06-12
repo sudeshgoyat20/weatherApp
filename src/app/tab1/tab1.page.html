@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      weather app
+
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<div *ngIf="showIcon">
+  <ion-img src="assets/icon/lodr.gif" class="loderCls"></ion-img>
+  </div>
+  <div *ngIf="todaysData" class="mainDiv">
+    <p>Current Weather Data </p>
+    <h5>Humidity - {{todaysData.main.humidity }}</h5>
+    <h5>{{todaysData.name}}</h5>
+  </div>
+  <ion-list *ngIf="weeklyData" class="mainDiv" >
+    <ion-item > 5 day / 3 hour forecast data</ion-item>
+    <ion-item *ngFor="let a of weeklyData.list">
+      <ion-label> Humidity - {{a.main.humidity}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="showError" class="mainDiv">
+    <h4>Somthing went wrong</h4>
+    <button class="btn" ion-button (click)="weekForcast(geoCoder)">Retry</button>
+  </div>
+</ion-content>
